@@ -137,8 +137,7 @@
         const EMAIL_TEMPLATE_ID = "template_sgg6gwp";
 
         //link
-        // https://portal.gigaom.com/reprint/data-lakes-vs-data-warehouses-a-cost-comparison-25-1291-1-fivetran
-        const LINK = "https://portal.gigaom.com/reprint/data-lakes-vs-data-warehouses-a-cost-comparison-25-1291-1-fivetran";
+        const PDF_LINK = "https://leadsbaton.github.io/Data-Product-Reusability-A-Strategic-Imperative-14621/assets/pdf/Data-Product-Reusability-A-Strategic-Imperative.pdf";
 
         /* ---------------------------------------------------------
            Boot
@@ -233,13 +232,13 @@
                 // reset form
                 form.reset();
 
-                // 👉 OPEN LINK IN NEW TAB AFTER SUCCESS
-                setTimeout(() => {
-                    window.open(LINK, '_blank');
-                }, 800);
-
-                //clear data
-                form.reset();
+               // Direct download instead of web view
+                const link = document.createElement('a');
+                link.href = PDF_LINK;
+                link.download = PDF_LINK.split('/').pop() || 'Data-Product-Reusability-A-Strategic-Imperative.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
 
             } catch (err) {
                 console.error('EmailJS Error:', err);
